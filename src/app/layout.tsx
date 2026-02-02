@@ -2,14 +2,17 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { CartProvider } from "@/contexts/CartContext";
-import { MainLayout } from "@/components/layout/MainLayout";
+
 import { Toaster } from "sonner";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
+import { SastoBazzarCompareProvider } from "@/contexts/SastoBazzarCompareContext";
+
+const inter = Inter({ subsets: ["latin"] });
 
 import { WhatsApp } from "@/components/common/whatsapp/WhatsApp";
 import Popup from "@/components/common/popup/Popup";
+import { AuthProvider } from "@/contexts/AuthContext";
 
-const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,16 +21,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <QueryProvider>
-          <CartProvider>  
-            <MainLayout>
-              <NextTopLoader color="#6f57cfp" />
-              {children}
-            </MainLayout>
-          </CartProvider>
-          <WhatsApp />
-          <Popup />
-        </QueryProvider>
+        <AuthProvider>
+          <SastoBazzarCompareProvider>
+            <QueryProvider>
+              <CartProvider>
+                <NextTopLoader color="#2462eb" />
+                {children}
+              </CartProvider>
+              <WhatsApp />
+              <Popup />
+            </QueryProvider>
+          </SastoBazzarCompareProvider>
+        </AuthProvider>
         <Toaster position="bottom-right" richColors />
       </body>
     </html>

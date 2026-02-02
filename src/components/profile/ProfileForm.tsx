@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { User, Mail, Phone, MapPin, Loader2 } from "lucide-react";
 
-export default function ProfileForm() {
+export const ProfileForm = () => {
     const { data: profile, isLoading: isFetching } = useProfile();
     const { mutate: updateProfile, isPending: isUpdating } = useUpdateProfile();
 

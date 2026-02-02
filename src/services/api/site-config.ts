@@ -1,11 +1,11 @@
 import { siteConfig } from "@/config/site";
 import { SiteConfig } from "@/types/site-config";
 import { handleApiError } from "@/utils/api-error";
-const BASE_API_URL = siteConfig.apiBaseUrl;
 
 export const siteConfigAPI = {
   getSiteConfig: async (): Promise<SiteConfig | null> => {
     try {
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/`);
       const response = await fetch(url.toString(), {
         method: "GET",
@@ -34,9 +34,10 @@ export const siteConfigAPI = {
 
   createSiteConfig: async (
     configData: FormData,
-    accessToken?: string,
+    accessToken?: string
   ): Promise<SiteConfig> => {
     try {
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/`);
 
       const headers: HeadersInit = {};
@@ -50,10 +51,10 @@ export const siteConfigAPI = {
         method: "POST",
         headers,
         body: configData,
-      }).catch((fetchError) => {
+      }).catch(fetchError => {
         console.error("Network error:", fetchError);
         throw new Error(
-          "Network error. Please check your connection and try again.",
+          "Network error. Please check your connection and try again."
         );
       });
 
@@ -76,9 +77,10 @@ export const siteConfigAPI = {
   patchSiteConfig: async (
     configId: number,
     configData: FormData,
-    accessToken?: string,
+    accessToken?: string
   ): Promise<SiteConfig> => {
     try {
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/${configId}/`);
 
       const headers: HeadersInit = {};
@@ -92,10 +94,10 @@ export const siteConfigAPI = {
         method: "PATCH",
         headers,
         body: configData,
-      }).catch((fetchError) => {
+      }).catch(fetchError => {
         console.error("Network error:", fetchError);
         throw new Error(
-          "Network error. Please check your connection and try again.",
+          "Network error. Please check your connection and try again."
         );
       });
 
@@ -117,9 +119,10 @@ export const siteConfigAPI = {
 
   deleteSiteConfig: async (
     configId: number,
-    accessToken?: string,
+    accessToken?: string
   ): Promise<void> => {
     try {
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/${configId}/`);
 
       const headers: HeadersInit = {};
@@ -132,10 +135,10 @@ export const siteConfigAPI = {
       const response = await fetch(url.toString(), {
         method: "DELETE",
         headers,
-      }).catch((fetchError) => {
+      }).catch(fetchError => {
         console.error("Network error:", fetchError);
         throw new Error(
-          "Network error. Please check your connection and try again.",
+          "Network error. Please check your connection and try again."
         );
       });
 

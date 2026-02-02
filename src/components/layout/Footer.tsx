@@ -1,206 +1,184 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import { useCreateNewsletter } from '@/hooks/use-newsletter';
-import { useCategories } from '@/hooks/use-category';
-import { toast } from 'sonner';
-import { useSiteConfig } from '@/hooks/use-site-config';
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import NextImage from "next/image";
 import {
-    Facebook,
-    Twitter,
-    Instagram,
-    Linkedin,
-    Youtube,
-    Music2,
-    MapPin,
-    Phone,
-    Mail,
-    Clock
-} from 'lucide-react';
-import Image from 'next/image';
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
+import { useCategories } from "@/hooks/use-category";
+import { useSiteConfig } from "@/hooks/use-site-config";
+const Footer: React.FC = () => {
+  const { data: categoriesData } = useCategories();
+  const { data: siteConfig } = useSiteConfig();
+  const categories = categoriesData?.results || [];
+  return (
+    <footer className="bg-navy-950 text-white pt-20 pb-10 overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 px-4">
+          <div className="space-y-6">
+            <Link href="/" className="flex items-center gap-2">
+              {siteConfig?.logo ? (
+                <NextImage
+                  src={siteConfig.logo}
+                  alt={siteConfig.business_name || "SastoBazzar"}
+                  width={160}
+                  height={48}
+                  className="h-10 w-auto object-contain"
+                />
+              ) : (
+                <>
+                  <div className="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+                    {siteConfig?.business_name ? siteConfig.business_name.charAt(0) : 'T'}
+                  </div>
+                  <span className="text-2xl font-black tracking-tight">
+                    {siteConfig?.business_name || 'SastoBazzar'}
+                  </span>
+                </>
+              )}
+            </Link>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              {siteConfig?.business_details || "Curating the world's most advanced electronics for the modern professional. Precision, performance, and aesthetic."}
+            </p>
+            <div className="flex gap-4">
+              {[
+                { Icon: Facebook, url: siteConfig?.facebook_url },
+                { Icon: Twitter, url: siteConfig?.twitter_url },
+                { Icon: Instagram, url: siteConfig?.instagram_url },
+                { Icon: Youtube, url: siteConfig?.youtube_url }
+              ].map(({ Icon, url }, i) => (
+                <a
+                  key={i}
+                  href={url || "#"}
+                  className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-brand-600 transition-all border border-white/5 hover:border-brand-500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
 
-export const Footer: React.FC = () => {
-    const [email, setEmail] = useState("");
-    const createNewsletter = useCreateNewsletter();
-    const { data: config } = useSiteConfig();
-    const { data: categories, isLoading: isCategoriesLoading } = useCategories({ page_size: 5 });
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!email) return;
-
-        createNewsletter.mutate(
-            { email },
-            {
-                onSuccess: () => {
-                    toast.success("Subscribed successfully!");
-                    setEmail("");
-                },
-                onError: (error: Error) => {
-                    toast.error(error.message || "Failed to subscribe");
-                },
-            }
-        );
-    };
-
-    return (
-        <footer className="bg-primary text-primary-foreground/70 pt-16 pb-8">
-            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-                <div className="space-y-6">
-                    <Link href="/" className="flex items-center gap-2">
-                        {config?.logo ? (
-                            <div className="relative overflow-hidden">
-                                <Image
-                                    src={config.logo}
-                                    alt={config.business_name || "Logo"}
-                                    width={200}
-                                    height={200}
-                                    className="object-contain  invert "
-                                />
-                            </div>
-                        ) : (
-                            <div className="w-10 h-10 bg-primary-foreground/10 rounded-xl flex items-center justify-center">
-                                <span className="text-primary-foreground font-bold text-xl italic">S</span>
-                            </div>
-                        )}
-
+          <div>
+            <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
+              Categories{" "}
+              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full" />
+            </h4>
+            <ul className="space-y-4 text-slate-400 text-sm font-medium">
+              {categories.length > 0 ? (
+                categories.slice(0, 3).map((cat) => (
+                  <li key={cat.id}>
+                    <Link
+                      href={`/category/${cat.slug}`}
+                      className="hover:text-brand-400 transition-colors"
+                    >
+                      {cat.name}
                     </Link>
-                    <p className="text-primary-foreground/60 leading-relaxed">
-                        {config?.business_description || "Creating premium shopping experiences with a touch of elegance. We deliver only the finest curated collections."}
-                    </p>
-                    <div className="flex flex-wrap gap-4">
-                        {config?.facebook_url && (
-                            <a href={config.facebook_url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 hover:border-primary-foreground/30 transition-all">
-                                <Facebook size={18} className="text-primary-foreground/80" />
-                            </a>
-                        )}
-                        {config?.twitter_url && (
-                            <a href={config.twitter_url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 hover:border-primary-foreground/30 transition-all">
-                                <Twitter size={18} className="text-primary-foreground/80" />
-                            </a>
-                        )}
-                        {config?.instagram_url && (
-                            <a href={config.instagram_url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 hover:border-primary-foreground/30 transition-all">
-                                <Instagram size={18} className="text-primary-foreground/80" />
-                            </a>
-                        )}
-                        {config?.linkedin_url && (
-                            <a href={config.linkedin_url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 hover:border-primary-foreground/30 transition-all">
-                                <Linkedin size={18} className="text-primary-foreground/80" />
-                            </a>
-                        )}
-                        {config?.youtube_url && (
-                            <a href={config.youtube_url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 hover:border-primary-foreground/30 transition-all">
-                                <Youtube size={18} className="text-primary-foreground/80" />
-                            </a>
-                        )}
-                        {config?.tiktok_url && (
-                            <a href={config.tiktok_url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 hover:border-primary-foreground/30 transition-all">
-                                <Music2 size={18} className="text-primary-foreground/80" />
-                            </a>
-                        )}
-                    </div>
-                </div>
+                  </li>
+                ))
+              ) : (
+                <li>
+                  <Link
+                    href="/category/electronics"
+                    className="hover:text-brand-400 transition-colors"
+                  >
+                    Smart Devices
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
 
-                <div>
-                    <h4 className="text-primary-foreground font-bold mb-6">Contact Us</h4>
-                    <ul className="space-y-4 text-sm">
-                        {config?.address && (
-                            <li className="flex items-start gap-3">
-                                <MapPin size={18} className="text-primary-foreground/40 shrink-0 mt-0.5" />
-                                <span>{config.address}</span>
-                            </li>
-                        )}
-                        {config?.phone && (
-                            <li className="flex items-start gap-3">
-                                <Phone size={18} className="text-primary-foreground/40 shrink-0 mt-0.5" />
-                                <span>{config.phone}</span>
-                            </li>
-                        )}
-                        {config?.email && (
-                            <li className="flex items-start gap-3">
-                                <Mail size={18} className="text-primary-foreground/40 shrink-0 mt-0.5" />
-                                <span>{config.email}</span>
-                            </li>
-                        )}
-                        {config?.working_hours && (
-                            <li className="flex items-start gap-3">
-                                <Clock size={18} className="text-primary-foreground/40 shrink-0 mt-0.5" />
-                                <span>{config.working_hours}</span>
-                            </li>
-                        )}
-                    </ul>
-                </div>
+          <div>
+            <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
+              Support <div className="w-1.5 h-1.5 bg-brand-500 rounded-full" />
+            </h4>
+            <ul className="space-y-4 text-slate-400 text-sm font-medium">
+              <li>
+                <Link
+                  href="/faq"
+                  className="hover:text-brand-400 transition-colors"
+                >
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/warranty"
+                  className="hover:text-brand-400 transition-colors"
+                >
+                  Warranty & Tech Support
+                </Link>
+              </li>
 
-                <div>
-                    <h4 className="text-primary-foreground font-bold mb-6">Quick Links</h4>
-                    <ul className="space-y-4">
-                        <li><Link href="/" className="hover:text-primary-foreground transition-colors">Home</Link></li>
-                        <li><Link href="/collections" className="hover:text-primary-foreground transition-colors">Shop</Link></li>
-                        <li><Link href="/about" className="hover:text-primary-foreground transition-colors">About Us</Link></li>
-                        <li><Link href="/contact" className="hover:text-primary-foreground transition-colors">Contact Us</Link></li>
-                        <li><Link href="/blogs" className="hover:text-primary-foreground transition-colors">Blogs</Link></li>
-                    </ul>
-                </div>
+              <li>
+                <Link
+                  href="/contact"
+                  className="hover:text-brand-400 transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-                <div>
-                    <h4 className="text-primary-foreground font-bold mb-6">Categories</h4>
-                    {isCategoriesLoading ? (
-                        <div className="animate-pulse space-y-4">
-                            {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="h-4 bg-primary-foreground/10 rounded w-24"></div>
-                            ))}
-                        </div>
-                    ) : (
-                        <ul className="space-y-4">
-                            {categories?.results && categories.results.length > 0 ? (
-                                categories.results.map((category) => (
-                                    <li key={category.id}>
-                                        <Link
-                                            href={`/collections?category=${category.slug}`}
-                                            className="hover:text-primary-foreground transition-colors"
-                                        >
-                                            {category.name}
-                                        </Link>
-                                    </li>
-                                ))
-                            ) : (
-                                <li><span className="text-primary-foreground/60">No categories found</span></li>
-                            )}
-                        </ul>
-                    )}
-                </div>
+          <div>
+            <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
+              Contact Us{" "}
+              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full" />
+            </h4>
+            <ul className="space-y-4 text-slate-400 text-sm font-medium">
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-brand-500 shrink-0" />
+                <span>
+                  {siteConfig?.address || "123 Tech Avenue, Silicon Valley California, 94000, USA"}
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-brand-500 shrink-0" />
+                <span>{siteConfig?.phone || "+977-9800000000"}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="text-brand-500 shrink-0" />
+                <span>{siteConfig?.email || "support@SastoBazzar.com"}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-                <div>
-                    <h4 className="text-primary-foreground font-bold mb-6">Newsletter</h4>
-                    <p className="text-primary-foreground/60 mb-4 text-sm">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
-                    <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-                        <input
-                            type="email"
-                            placeholder="Your email address"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="bg-primary-foreground/5 border-none rounded-lg px-4 py-3 text-primary-foreground placeholder:text-primary-foreground/40 focus:ring-2 focus:ring-primary-foreground/20 outline-none"
-                        />
-                        <Button
-                            type="submit"
-                            disabled={createNewsletter.isPending}
-                            className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 border-none"
-                        >
-                            {createNewsletter.isPending ? "Subscribing..." : "Subscribe"}
-                        </Button>
-                    </form>
-                </div>
-            </div>
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs text-slate-500 font-bold tracking-widest uppercase">
+            © {new Date().getFullYear()} {siteConfig?.business_name || 'SastoBazzar'}. Powered by Innovation.
+          </p>
+          <div className="flex gap-8 text-xs font-bold text-slate-500 tracking-widest uppercase">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms-of-service"
+              className="hover:text-white transition-colors"
+            >
+              Terms
+            </Link>
+          </div>
+        </div>
+      </div>
 
-            <div className="max-w-7xl mx-auto px-4 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                <p>© {new Date().getFullYear()} SastoBazaar Shop Inc. All rights reserved.</p>
-                <div className="flex gap-6">
-                    <Link href="/privacy" className="hover:text-primary-foreground transition-colors">Privacy Policy</Link>
-                    <Link href="/terms" className="hover:text-primary-foreground transition-colors">Terms of Service</Link>
-                </div>
-            </div>
-        </footer>
-    );
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 -mr-64 -mt-64 w-[500px] h-[500px] bg-brand-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -ml-64 -mb-64 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+    </footer>
+  );
 };
+
+export default Footer;
