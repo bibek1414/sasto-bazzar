@@ -18,10 +18,10 @@ const AboutPage: React.FC = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:20px_20px]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
-          <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-widest mb-6">
+          <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold  tracking-widest mb-6">
             Since 2024
           </span>
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-8">
+          <h1 className="text-4xl md:text-6xl font-semibold text-white mb-8">
             {siteConfig?.business_name || "Trimurti"} <br />
             <span className="text-brand-500">
               Redefining Tomorrow&apos;s Tech Lifestyle.
@@ -50,10 +50,10 @@ const AboutPage: React.FC = () => {
               <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4 text-brand-600">
                 <stat.icon size={24} />
               </div>
-              <p className="text-3xl font-black text-navy-950 mb-1">
+              <p className="text-3xl font-semibold text-navy-950 mb-1">
                 {stat.value}
               </p>
-              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+              <p className="text-[10px] font-semibold text-gray-400  tracking-widest">
                 {stat.label}
               </p>
             </div>
@@ -65,7 +65,7 @@ const AboutPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-24">
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black text-navy-950 mb-8 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-semibold text-navy-950 mb-8 leading-tight">
               Our mission is to empower human potential.
             </h2>
             <div className="space-y-6 text-slate-500 font-medium leading-relaxed">
@@ -82,7 +82,7 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
             <div className="pt-10">
-              <button className="px-10 py-5 bg-navy-950 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 transition-all shadow-xl">
+              <button className="px-10 py-5 bg-navy-950 text-white rounded-2xl font-semibold text-xs  tracking-widest hover:bg-brand-600 transition-all shadow-xl">
                 Join the Movement
               </button>
             </div>
@@ -100,8 +100,8 @@ const AboutPage: React.FC = () => {
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white p-6 rounded-[2rem] shadow-2xl border border-gray-100 flex flex-col items-center justify-center text-center">
-              <p className="text-2xl font-black text-brand-600">No. 1</p>
-              <p className="text-[8px] font-black text-navy-950 uppercase tracking-widest">
+              <p className="text-2xl font-semibold text-brand-600">No. 1</p>
+              <p className="text-[8px] font-semibold text-navy-950  tracking-widest">
                 Tech Retailer 2024
               </p>
             </div>
@@ -114,7 +114,7 @@ const AboutPage: React.FC = () => {
         <div className="bg-gray-50 py-24">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-black text-navy-950 mb-4">
+              <h2 className="text-3xl md:text-5xl font-semibold text-navy-950 mb-4">
                 Our Visionaries
               </h2>
               <p className="text-gray-500 font-medium">
@@ -135,10 +135,10 @@ const AboutPage: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-brand-600/0 group-hover:bg-brand-600/20 transition-all duration-700" />
                   </div>
-                  <h3 className="text-xl font-black text-navy-950 mb-1">
+                  <h3 className="text-xl font-semibold text-navy-950 mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-[10px] font-black text-brand-600 uppercase tracking-widest">
+                  <p className="text-[10px] font-semibold text-brand-600  tracking-widest">
                     {member.role}
                   </p>
                 </div>

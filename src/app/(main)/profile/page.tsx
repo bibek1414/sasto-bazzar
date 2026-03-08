@@ -26,7 +26,7 @@ export default function ProfilePage() {
               <div className="md:w-1/3 border-b md:border-b-0 md:border-r border-border/50 pb-8 md:pb-0 md:pr-10">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center mb-6 border-4 border-primary/20 shadow-inner">
-                    <span className="text-primary text-5xl font-black italic">
+                    <span className="text-primary text-5xl font-semibold italic">
                       S
                     </span>
                   </div>

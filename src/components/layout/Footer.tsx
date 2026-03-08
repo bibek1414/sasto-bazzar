@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                       ? siteConfig.business_name.charAt(0)
                       : "T"}
                   </div>
-                  <span className="text-2xl font-black tracking-tight">
+                  <span className="text-2xl font-semibold ">
                     {siteConfig?.business_name || "Trimurti"}
                   </span>
                 </>
@@ -158,11 +158,11 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-xs text-slate-500 font-bold tracking-widest uppercase">
+          <p className="text-xs text-slate-500 font-bold tracking-widest ">
             © {new Date().getFullYear()}{" "}
             {siteConfig?.business_name || "Trimurti"}. Powered by Innovation.
           </p>
-          <div className="flex gap-8 text-xs font-bold text-slate-500 tracking-widest uppercase">
+          <div className="flex gap-8 text-xs font-bold text-slate-500 tracking-widest ">
             <Link
               href="/privacy-policy"
               className="hover:text-white transition-colors"

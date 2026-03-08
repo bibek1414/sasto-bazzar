@@ -333,9 +333,7 @@ const CheckoutContent = () => {
             <Check size={16} />
           </div>
           <div>
-            <p className="font-bold text-xs  tracking-wider">
-              Cash on Delivery
-            </p>
+            <p className="font-bold text-xs  ">Cash on Delivery</p>
             <p className="text-[10px] text-muted-foreground font-medium">
               Pay when you receive
             </p>

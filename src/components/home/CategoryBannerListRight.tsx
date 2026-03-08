@@ -12,7 +12,7 @@ const CategoryBannerListRight: React.FC = () => {
   return (
     <>
       {rightBanners.map((b) => (
-        <div className="py-12" key={b.id}>
+        <div className="" key={b.id}>
           <CategoryBanner
             title={b.title}
             subtitle={b.subtitle}

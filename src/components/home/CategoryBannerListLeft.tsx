@@ -14,7 +14,7 @@ const CategoryBannerListLeft: React.FC = () => {
   return (
     <>
       {leftBanners.map((b) => (
-        <div className="py-12" key={b.id}>
+        <div className="" key={b.id}>
           <CategoryBanner
             title={b.title}
             subtitle={b.subtitle}

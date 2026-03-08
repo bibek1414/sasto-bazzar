@@ -122,8 +122,8 @@ const CartDrawer: React.FC = () => {
                       </button>
                     </div>
                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    <p className="text-xs text-gray-400 font-bold  tracking-wider mb-3">
-                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                    <p className="text-xs text-gray-400 font-bold   mb-3">
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                       {(item.product.category as any)?.name ||
                         item.product.category ||
                         "Electronics"}
@@ -158,7 +158,7 @@ const CartDrawer: React.FC = () => {
                           <Plus size={12} />
                         </button>
                       </div>
-                      <span className="font-black text-brand-600">
+                      <span className="font-semibold text-brand-600">
                         RS.
                         {(
                           (item.selectedVariant
@@ -185,13 +185,13 @@ const CartDrawer: React.FC = () => {
                 </div>
                 <div className="flex justify-between text-sm text-gray-500">
                   <span className="font-medium">Shipping</span>
-                  <span className="text-green-600 font-bold  tracking-wider">
+                  <span className="text-green-600 font-bold  ">
                     Calculated at next step
                   </span>
                 </div>
               </div>
               <div className="flex justify-between items-center py-4 border-t border-gray-200/50">
-                <span className="text-lg font-normal text-navy-950 tracking-tight">
+                <span className="text-lg font-normal text-navy-950 ">
                   Total Amount
                 </span>
                 <span className="text-xl font-normal text-brand-600">

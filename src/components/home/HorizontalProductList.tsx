@@ -33,7 +33,7 @@ const HorizontalProductList: React.FC<HorizontalProductListProps> = ({
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2">
-            <h2 className="text-4xl md:text-5xl  text-navy-950 tracking-tight leading-tight">
+            <h2 className="text-2xl md:text-4xl font-bold  text-navy-950  leading-tight">
               {title}
             </h2>
           </div>

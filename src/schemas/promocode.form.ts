@@ -6,10 +6,7 @@ export const CreatePromoCodeSchema = z
       .string()
       .min(1, "Code is required")
       .max(10, "Code must be 10 characters or less")
-      .regex(
-        /^[A-Z0-9]+$/,
-        "Code must contain only uppercase letters and numbers"
-      ),
+      .regex(/^[A-Z0-9]+$/, "Code must contain only  letters and numbers"),
     discount_percentage: z
       .number()
       .min(0, "Discount must be at least 0%")
@@ -19,7 +16,7 @@ export const CreatePromoCodeSchema = z
     max_uses: z.number().nullable().optional(),
     is_active: z.boolean().default(true),
   })
-  .refine(data => new Date(data.valid_to) > new Date(data.valid_from), {
+  .refine((data) => new Date(data.valid_to) > new Date(data.valid_from), {
     message: "End date must be after start date",
     path: ["valid_to"],
   });

@@ -78,7 +78,7 @@ export default function ProductListingContent() {
 
           <main className="flex-1">
             <div className="flex items-center justify-between mb-8 lg:hidden">
-              <h2 className="text-2xl font-black text-foreground uppercase tracking-tighter">
+              <h2 className="text-2xl font-semibold text-foreground  er">
                 Collections
               </h2>
               <Button

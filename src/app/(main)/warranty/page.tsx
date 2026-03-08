@@ -15,10 +15,10 @@ const WarrantyPage: React.FC = () => {
         <div className="bg-white rounded-[3rem] shadow-xl border border-gray-100 overflow-hidden">
           <div className="bg-navy-950 p-12 md:p-20 text-center relative overflow-hidden">
             <div className="relative z-10">
-              <span className="text-brand-400 text-xs font-black uppercase tracking-[0.4em] mb-6 block">
+              <span className="text-brand-400 text-xs font-semibold  tracking-[0.4em] mb-6 block">
                 Premium Assurance
               </span>
-              <h1 className="text-4xl md:text-7xl font-black text-white mb-8 tracking-tighter">
+              <h1 className="text-4xl md:text-7xl font-semibold text-white mb-8 er">
                 ELITE CARE <br /> PROGRAM.
               </h1>
               <p className="text-slate-400 max-w-xl mx-auto font-medium text-lg leading-relaxed">
@@ -56,7 +56,7 @@ const WarrantyPage: React.FC = () => {
                   <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-brand-600 shadow-sm mx-auto mb-8">
                     <item.icon size={32} />
                   </div>
-                  <h3 className="text-xl font-black text-navy-950 mb-4">
+                  <h3 className="text-xl font-semibold text-navy-950 mb-4">
                     {item.title}
                   </h3>
                   <p className="text-sm text-gray-500 font-medium leading-relaxed">
@@ -67,7 +67,7 @@ const WarrantyPage: React.FC = () => {
             </div>
 
             <div className="mt-20 pt-20 border-t border-gray-100">
-              <h2 className="text-3xl font-black text-navy-950 mb-10 text-center tracking-tight">
+              <h2 className="text-3xl font-semibold text-navy-950 mb-10 text-center ">
                 Frequently Asked Questions
               </h2>
               <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">

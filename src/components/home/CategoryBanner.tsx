@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import ImageWithFallback from "@/components/common/ImageWithFallback";
+import Image from "next/image";
 
 interface CategoryBannerProps {
   title: string;
@@ -21,11 +22,11 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
   image,
   variant = "left",
   bgClass = "bg-gray-900",
-  link
+  link,
 }) => {
   return (
     <section className="py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto ">
         <div
           className={`relative rounded-3xl overflow-hidden ${bgClass} text-white min-h-[360px] md:min-h-[420px] flex items-center shadow-2xl group`}
         >
@@ -41,7 +42,7 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
             <div
               className={`order-2 ${variant === "right" ? "md:order-1" : "md:order-2"} ${variant === "right" ? "md:pr-12" : "md:pl-12"}`}
             >
-              <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/10 text-xs font-bold uppercase tracking-wider mb-6">
+              <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/10 text-xs font-bold   mb-6">
                 {subtitle}
               </span>
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
@@ -62,15 +63,14 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
             <div
               className={`order-1 ${variant === "right" ? "md:order-2" : "md:order-1"} flex justify-center`}
             >
-              <ImageWithFallback
+              <Image
                 id={image}
                 src={image}
                 alt={title}
                 width={500}
-                height={500}
-                fallbackSrc={"/fallback-product.svg"}
+                height={600}
                 className={`
-                  w-full max-w-sm md:max-w-md object-contain drop-shadow-2xl 
+                  w-full h-150 max-w-sm md:max-w-md object-contain drop-shadow-2xl 
                   transition-transform duration-700 ease-out 
                   ${variant === "right" ? "group-hover:-translate-x-4 group-hover:rotate-2" : "group-hover:translate-x-4 group-hover:-rotate-2"}
                 `}

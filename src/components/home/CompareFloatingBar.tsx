@@ -8,8 +8,13 @@ import Image from "next/image";
 import { Product } from "@/types/product";
 
 const CompareFloatingBar: React.FC = () => {
-  const { compareItems, removeFromCompare, clearCompare, isCompareBarVisible, setIsCompareBarVisible } =
-    useSastoBazzarCompare();
+  const {
+    compareItems,
+    removeFromCompare,
+    clearCompare,
+    isCompareBarVisible,
+    setIsCompareBarVisible,
+  } = useSastoBazzarCompare();
 
   if (compareItems.length === 0 || !isCompareBarVisible) return null;
 
@@ -26,7 +31,7 @@ const CompareFloatingBar: React.FC = () => {
 
         <div className="flex items-center gap-4 flex-1">
           <div className="hidden md:flex flex-col">
-            <span className="text-xs font-black uppercase tracking-widest text-brand-400">
+            <span className="text-xs font-semibold  tracking-widest text-brand-400">
               Compare
             </span>
             <span className="text-[10px] opacity-60 font-medium">

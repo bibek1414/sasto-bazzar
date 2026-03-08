@@ -79,10 +79,10 @@ const Hero: React.FC = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="max-w-xl text-white pt-10"
               >
-                <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-white/20">
+                <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold   mb-6 border border-white/20">
                   {heroSlides[heroIndex].subtitle}
                 </span>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-none tracking-tight shadow-sm">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-none  shadow-sm">
                   {heroSlides[heroIndex].title}
                 </h1>
                 <p className="text-lg md:text-xl text-white/90 mb-8 font-light max-w-md leading-relaxed">

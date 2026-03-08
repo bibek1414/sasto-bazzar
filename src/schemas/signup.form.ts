@@ -34,7 +34,7 @@ export const baseSignupSchema = z
         message: "Password must contain at least one lowercase letter.",
       })
       .regex(/[A-Z]/, {
-        message: "Password must contain at least one uppercase letter.",
+        message: "Password must contain at least one  letter.",
       })
       .regex(/[0-9]/, {
         message: "Password must contain at least one number.",

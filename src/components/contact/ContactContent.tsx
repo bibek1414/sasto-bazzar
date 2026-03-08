@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
       {/* Header Section */}
       <div className="bg-navy-950 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-brand-300 text-xs font-bold uppercase tracking-wider mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-brand-300 text-xs font-bold   mb-4">
             Support Center
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "SastoBazzar | Premium Electronics Store",
+  title: "Trimurti | Premium Electronics Store",
 };
 
 export default function HomePage() {
