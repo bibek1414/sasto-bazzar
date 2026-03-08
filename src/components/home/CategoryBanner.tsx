@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import ImageWithFallback from "@/components/common/ImageWithFallback";
 import Image from "next/image";
 
 interface CategoryBannerProps {
