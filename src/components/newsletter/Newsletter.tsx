@@ -36,9 +36,6 @@ const Newsletter: React.FC = () => {
   return (
     <div className="bg-gray-50 rounded-[3rem] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative border border-gray-100">
       <div className="flex-1 relative z-10">
-        <span className="text-brand-600 text-xs font-semibold  tracking-[0.3em] mb-4 block">
-          Insider Access
-        </span>
         <h2 className="text-3xl md:text-5xl font-semibold text-navy-950 mb-6 leading-tight">
           Join the Elite <br /> Tech Community.
         </h2>
