@@ -47,7 +47,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
       configs[status?.toLowerCase()] || {
         color: "bg-gray-100 text-gray-800 border-gray-200",
         icon: "❓",
-        label: status?.charAt(0).to() + status?.slice(1) || "Unknown",
+        label: status?.charAt(0) + status?.slice(1) || "Unknown",
       }
     );
   };
