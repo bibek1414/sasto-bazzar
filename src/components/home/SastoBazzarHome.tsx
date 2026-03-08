@@ -17,7 +17,7 @@ import { Suspense } from "react";
 import { ContactForm } from "./ContactForm";
 import FAQ from "./Faq";
 
-const SastoBazzarHome: React.FC = () => {
+const TrimurtiHome: React.FC = () => {
   const { data: productsData, isLoading: productsLoading } = useProducts({
     page_size: 20,
   });
@@ -43,7 +43,7 @@ const SastoBazzarHome: React.FC = () => {
         <CategoryGrid />
 
         <HorizontalProductList
-          title="SastoBazzar Hot Deals"
+          title="Trimurti Hot Deals"
           subtitle="Don't Miss Out"
           products={products.slice(0, 6)}
         />
@@ -88,4 +88,4 @@ const SastoBazzarHome: React.FC = () => {
   );
 };
 
-export default SastoBazzarHome;
+export default TrimurtiHome;

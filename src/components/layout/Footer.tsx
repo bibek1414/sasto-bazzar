@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
               {siteConfig?.logo ? (
                 <NextImage
                   src={siteConfig.logo}
-                  alt={siteConfig.business_name || "SastoBazzar"}
+                  alt={siteConfig.business_name || "Trimurti"}
                   width={160}
                   height={48}
                   className="h-10 w-auto object-contain"
@@ -35,23 +35,26 @@ const Footer: React.FC = () => {
               ) : (
                 <>
                   <div className="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">
-                    {siteConfig?.business_name ? siteConfig.business_name.charAt(0) : 'T'}
+                    {siteConfig?.business_name
+                      ? siteConfig.business_name.charAt(0)
+                      : "T"}
                   </div>
                   <span className="text-2xl font-black tracking-tight">
-                    {siteConfig?.business_name || 'SastoBazzar'}
+                    {siteConfig?.business_name || "Trimurti"}
                   </span>
                 </>
               )}
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
-              {siteConfig?.business_details || "Curating the world's most advanced electronics for the modern professional. Precision, performance, and aesthetic."}
+              {siteConfig?.business_details ||
+                "Curating the world's most advanced electronics for the modern professional. Precision, performance, and aesthetic."}
             </p>
             <div className="flex gap-4">
               {[
                 { Icon: Facebook, url: siteConfig?.facebook_url },
                 { Icon: Twitter, url: siteConfig?.twitter_url },
                 { Icon: Instagram, url: siteConfig?.instagram_url },
-                { Icon: Youtube, url: siteConfig?.youtube_url }
+                { Icon: Youtube, url: siteConfig?.youtube_url },
               ].map(({ Icon, url }, i) => (
                 <a
                   key={i}
@@ -138,7 +141,8 @@ const Footer: React.FC = () => {
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-brand-500 shrink-0" />
                 <span>
-                  {siteConfig?.address || "123 Tech Avenue, Silicon Valley California, 94000, USA"}
+                  {siteConfig?.address ||
+                    "123 Tech Avenue, Silicon Valley California, 94000, USA"}
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -147,7 +151,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-brand-500 shrink-0" />
-                <span>{siteConfig?.email || "support@SastoBazzar.com"}</span>
+                <span>{siteConfig?.email || "support@Trimurti.com"}</span>
               </li>
             </ul>
           </div>
@@ -155,7 +159,8 @@ const Footer: React.FC = () => {
 
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs text-slate-500 font-bold tracking-widest uppercase">
-            © {new Date().getFullYear()} {siteConfig?.business_name || 'SastoBazzar'}. Powered by Innovation.
+            © {new Date().getFullYear()}{" "}
+            {siteConfig?.business_name || "Trimurti"}. Powered by Innovation.
           </p>
           <div className="flex gap-8 text-xs font-bold text-slate-500 tracking-widest uppercase">
             <Link

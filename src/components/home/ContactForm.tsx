@@ -64,7 +64,7 @@ export const ContactForm = () => {
       {/* Gradients - hidden on mobile */}
       <div className="max-w-xl mx-auto text-center px-2 relative z-20">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-carent-dark">
-          Contact {siteConfig?.business_name || 'SastoBazzar'} Today
+          Contact {siteConfig?.business_name || "Trimurti"} Today
         </h1>
       </div>
       <div className="max-w-lg mx-auto relative z-20">

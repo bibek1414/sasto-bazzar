@@ -22,13 +22,14 @@ const AboutPage: React.FC = () => {
             Since 2024
           </span>
           <h1 className="text-4xl md:text-6xl font-black text-white mb-8">
-            {siteConfig?.business_name || 'SastoBazzar'} <br />
+            {siteConfig?.business_name || "Trimurti"} <br />
             <span className="text-brand-500">
               Redefining Tomorrow&apos;s Tech Lifestyle.
             </span>
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto font-medium">
-            {siteConfig?.business_details || `${siteConfig?.business_name || 'SastoBazzar'} is more than a marketplace. We are a curation of peak engineering and visionary design.`}
+            {siteConfig?.business_details ||
+              `${siteConfig?.business_name || "Trimurti"} is more than a marketplace. We are a curation of peak engineering and visionary design.`}
           </p>
         </div>
       </div>

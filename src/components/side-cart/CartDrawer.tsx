@@ -1,143 +1,224 @@
 "use client";
 
-import React from 'react';
-import { useCart } from '@/hooks/use-cart';
-import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from "react";
+import { useCart } from "@/hooks/use-cart";
+import { X, Plus, Minus, ShoppingBag } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 const CartDrawer: React.FC = () => {
-    const { cartItems, updateQuantity, removeFromCart, totalPrice, isCartOpen, setIsCartOpen } = useCart();
+  const {
+    cartItems,
+    updateQuantity,
+    removeFromCart,
+    totalPrice,
+    isCartOpen,
+    setIsCartOpen,
+  } = useCart();
 
-    if (!isCartOpen) return null;
+  if (!isCartOpen) return null;
 
-    return (
-        <div className="fixed inset-0 z-[100] overflow-hidden">
-            {/* Backdrop */}
-            <div
-                className="absolute inset-0 bg-navy-950/40 backdrop-blur-sm transition-opacity"
-                onClick={() => setIsCartOpen(false)}
-            />
+  return (
+    <div className="fixed inset-0 z-[100] overflow-hidden">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-navy-950/40 backdrop-blur-sm transition-opacity"
+        onClick={() => setIsCartOpen(false)}
+      />
 
-            {/* Panel */}
-            <div className="absolute inset-y-0 right-0 max-w-full flex">
-                <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col animate-slide-in-right">
-                    {/* Header */}
-                    <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600">
-                                <ShoppingBag size={20} />
-                            </div>
-                            <div>
-                                <h2 className="text-xl font-black text-navy-950">Shopping Bag</h2>
-                                <p className="text-xs font-bold text-gray-400  tracking-widest">{cartItems.length} premium items</p>
-                            </div>
-                        </div>
-                        <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-gray-100 rounded-xl transition-colors">
-                            <X size={24} />
-                        </button>
-                    </div>
-
-                    {/* Items List */}
-                    <div className="flex-grow overflow-y-auto p-6 space-y-6 scrollbar-thin">
-                        {cartItems.length === 0 ? (
-                            <div className="h-full flex flex-col items-center justify-center text-center py-20 grayscale opacity-60">
-                                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-                                    <ShoppingBag size={40} className="text-gray-400" />
-                                </div>
-                                <div>
-                                    <p className="text-gray-900 font-medium">Your cart is empty</p>
-                                    <p className="text-sm text-gray-500">Looks like you haven&apos;t added anything yet.</p>
-                                </div>
-                                <button
-                                    onClick={() => setIsCartOpen(false)}
-                                    className="mt-8 px-8 py-3 bg-brand-600 text-white rounded-xl font-bold text-sm shadow-xl shadow-brand-100 hover:bg-brand-700 active:scale-95 transition-all"
-                                >
-                                    Start Browsing
-                                </button>
-                            </div>
-                        ) : (
-                            cartItems.map(item => (
-                                <div key={item.selectedVariant?.id || item.product.id} className="flex gap-4 group">
-                                    <div className="w-24 h-24 bg-gray-50 rounded-2xl flex-shrink-0 p-2 border border-gray-100 group-hover:border-brand-200 transition-colors">
-                                        <Image src={item.product.thumbnail_image || '/images/placeholder.svg'}
-                                            alt={item.product.name}
-                                            className="w-full h-full object-contain mix-blend-multiply"
-                                            width={100}
-                                            height={100}
-                                        />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <div className="flex justify-between items-start mb-1">
-                                            <Link href={`/product/${item.product.slug}`} className="text-sm font-bold text-navy-900 line-clamp-1 hover:text-brand-600 transition-colors">
-                                                {item.product.name}
-                                                {item.selectedVariant && (
-                                                    <span className="text-xs text-gray-500 block">
-                                                        ({Object.values(item.selectedVariant.option_values).join(', ')})
-                                                    </span>
-                                                )}
-                                            </Link>
-                                            <button onClick={() => removeFromCart(item.product.id, item.selectedVariant?.id)} className="text-gray-400 hover:text-red-500 p-1">
-                                                <X size={14} />
-                                            </button>
-                                        </div>
-                                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                                        <p className="text-xs text-gray-400 font-bold  tracking-wider mb-3">{(item.product.category as any)?.name || item.product.category || 'Electronics'}</p>
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center bg-gray-50 rounded-lg p-1 border border-gray-100">
-                                                <button onClick={() => updateQuantity(item.product.id, item.quantity - 1, item.selectedVariant?.id)} className="p-1 hover:bg-white hover:shadow-sm rounded transition-all text-gray-600"><Minus size={12} /></button>
-                                                <span className="w-8 text-center text-xs font-bold">{item.quantity}</span>
-                                                <button onClick={() => updateQuantity(item.product.id, item.quantity + 1, item.selectedVariant?.id)} className="p-1 hover:bg-white hover:shadow-sm rounded transition-all text-gray-600"><Plus size={12} /></button>
-                                            </div>
-                                            <span className="font-black text-brand-600">
-                                                RS.{((item.selectedVariant ? parseFloat(item.selectedVariant.price) : parseFloat(item.product.price)) * item.quantity).toLocaleString("en-IN")}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
-
-                    {/* Footer */}
-                    {cartItems.length > 0 && (
-                        <div className="p-6 bg-gray-50 border-t border-gray-200 space-y-4">
-                            <div className="space-y-2">
-                                <div className="flex justify-between text-sm text-gray-500">
-                                    <span className="font-medium">Subtotal</span>
-                                    <span className="font-bold text-navy-950">RS.{totalPrice.toLocaleString("en-IN")}</span>
-                                </div>
-                                <div className="flex justify-between text-sm text-gray-500">
-                                    <span className="font-medium">Shipping</span>
-                                    <span className="text-green-600 font-bold  tracking-wider">Calculated at next step</span>
-                                </div>
-                            </div>
-                            <div className="flex justify-between items-center py-4 border-t border-gray-200/50">
-                                <span className="text-lg font-black text-navy-950 tracking-tight">Total Amount</span>
-                                <span className="text-2xl font-black text-brand-600">RS.{totalPrice.toLocaleString("en-IN")}</span>
-                            </div>
-                            <Link
-                                href="/checkout"
-                                onClick={() => setIsCartOpen(false)}
-                                className="block w-full bg-slate-900 text-white py-4 rounded-2xl font-black text-sm tracking-wider hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-[0.98] text-center"
-                            >
-                                Proceed to Checkout
-                            </Link>
-
-                            <Link
-                                href="/collections"
-                                onClick={() => setIsCartOpen(false)}
-                                className="block w-full text-xs font-bold text-gray-400 tracking-widest hover:text-navy-950 transition-colors py-2 text-center"
-                            >
-                                Continue Shopping
-                            </Link>
-
-                        </div>
-                    )}
-                </div>
+      {/* Panel */}
+      <div className="absolute inset-y-0 right-0 max-w-full flex">
+        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col animate-slide-in-right">
+          {/* Header */}
+          <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600">
+                <ShoppingBag size={20} />
+              </div>
+              <div>
+                <h2 className="text-xl font-normal text-navy-950">
+                  Shopping Bag
+                </h2>
+                <p className="text-xs font-normal text-gray-400  ">
+                  {cartItems.length} premium items
+                </p>
+              </div>
             </div>
+            <button
+              onClick={() => setIsCartOpen(false)}
+              className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Items List */}
+          <div className="flex-grow overflow-y-auto p-6 space-y-6 scrollbar-thin">
+            {cartItems.length === 0 ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-20 grayscale opacity-60">
+                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                  <ShoppingBag size={40} className="text-gray-400" />
+                </div>
+                <div>
+                  <p className="text-gray-900 font-medium">
+                    Your cart is empty
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    Looks like you haven&apos;t added anything yet.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsCartOpen(false)}
+                  className="mt-8 px-8 py-3 bg-brand-600 text-white rounded-xl font-bold text-sm shadow-xl shadow-brand-100 hover:bg-brand-700 active:scale-95 transition-all"
+                >
+                  Start Browsing
+                </button>
+              </div>
+            ) : (
+              cartItems.map((item) => (
+                <div
+                  key={item.selectedVariant?.id || item.product.id}
+                  className="flex gap-4 group"
+                >
+                  <div className="w-24 h-24 bg-gray-50 rounded-2xl flex-shrink-0 p-2 border border-gray-100 group-hover:border-brand-200 transition-colors">
+                    <Image
+                      src={
+                        item.product.thumbnail_image ||
+                        "/images/placeholder.svg"
+                      }
+                      alt={item.product.name}
+                      className="w-full h-full object-contain mix-blend-multiply"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex justify-between items-start mb-1">
+                      <Link
+                        href={`/product/${item.product.slug}`}
+                        className="text-sm font-bold text-navy-900 line-clamp-1 hover:text-brand-600 transition-colors"
+                      >
+                        {item.product.name}
+                        {item.selectedVariant && (
+                          <span className="text-xs text-gray-500 block">
+                            (
+                            {Object.values(
+                              item.selectedVariant.option_values,
+                            ).join(", ")}
+                            )
+                          </span>
+                        )}
+                      </Link>
+                      <button
+                        onClick={() =>
+                          removeFromCart(
+                            item.product.id,
+                            item.selectedVariant?.id,
+                          )
+                        }
+                        className="text-gray-400 hover:text-red-500 p-1"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                    <p className="text-xs text-gray-400 font-bold  tracking-wider mb-3">
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                      {(item.product.category as any)?.name ||
+                        item.product.category ||
+                        "Electronics"}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center bg-gray-50 rounded-lg p-1 border border-gray-100">
+                        <button
+                          onClick={() =>
+                            updateQuantity(
+                              item.product.id,
+                              item.quantity - 1,
+                              item.selectedVariant?.id,
+                            )
+                          }
+                          className="p-1 hover:bg-white hover:shadow-sm rounded transition-all text-gray-600"
+                        >
+                          <Minus size={12} />
+                        </button>
+                        <span className="w-8 text-center text-xs font-bold">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(
+                              item.product.id,
+                              item.quantity + 1,
+                              item.selectedVariant?.id,
+                            )
+                          }
+                          className="p-1 hover:bg-white hover:shadow-sm rounded transition-all text-gray-600"
+                        >
+                          <Plus size={12} />
+                        </button>
+                      </div>
+                      <span className="font-black text-brand-600">
+                        RS.
+                        {(
+                          (item.selectedVariant
+                            ? parseFloat(item.selectedVariant.price)
+                            : parseFloat(item.product.price)) * item.quantity
+                        ).toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Footer */}
+          {cartItems.length > 0 && (
+            <div className="p-6 bg-gray-50 border-t border-gray-200 space-y-4">
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span className="font-medium">Subtotal</span>
+                  <span className="font-bold text-navy-950">
+                    RS.{totalPrice.toLocaleString("en-IN")}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span className="font-medium">Shipping</span>
+                  <span className="text-green-600 font-bold  tracking-wider">
+                    Calculated at next step
+                  </span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center py-4 border-t border-gray-200/50">
+                <span className="text-lg font-normal text-navy-950 tracking-tight">
+                  Total Amount
+                </span>
+                <span className="text-xl font-normal text-brand-600">
+                  RS.{totalPrice.toLocaleString("en-IN")}
+                </span>
+              </div>
+              <Link
+                href="/checkout"
+                onClick={() => setIsCartOpen(false)}
+                className="block w-full bg-slate-900 text-white py-4 rounded-2xl  text-sm  hover:bg-slate-800 transition-all shadow-xl shadow-slate-200  text-center"
+              >
+                Proceed to Checkout
+              </Link>
+
+              <Link
+                href="/collections"
+                onClick={() => setIsCartOpen(false)}
+                className="block w-full text-xs font-bold text-gray-400  hover:text-navy-950 transition-colors py-2 text-center"
+              >
+                Continue Shopping
+              </Link>
+            </div>
+          )}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default CartDrawer;

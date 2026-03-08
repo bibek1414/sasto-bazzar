@@ -76,7 +76,7 @@ const Header: React.FC = () => {
                                 {siteConfig?.logo ? (
                                     <NextImage
                                         src={siteConfig.logo}
-                                        alt={siteConfig.business_name || "SastoBazzar"}
+                                        alt={siteConfig.business_name || "Trimurti"}
                                         width={160}
                                         height={48}
                                         className="h-10 w-auto object-contain"
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
                                             {siteConfig?.business_name ? siteConfig.business_name.charAt(0) : 'T'}
                                         </div>
                                         <span className="text-2xl font-bold tracking-tight text-navy-950 hidden sm:block">
-                                            {siteConfig?.business_name || 'SastoBazzar'}
+                                            {siteConfig?.business_name || 'Trimurti'}
                                         </span>
                                     </>
                                 )}
